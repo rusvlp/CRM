@@ -17,7 +17,12 @@ RUN apt-get update && apt-get install -y \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+WORKDIR /var/www/
+COPY ./Makefile /var/www/
 COPY ./_docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
+
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Install composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -25,6 +30,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     --filename=composer \
     --install-dir=/usr/local/bin
 
+# Fix Laravel permission error. Server starts from www user account.
+COPY --chown=www:www . /var/www/storage
+COPY --chown=www:www . /var/www/bootstrap/cache
+COPY --chown=www:www . /var/www/storage/framework/sessions
+
+USER www
+#RUN chmod 777 -R /var/www
 # Whatever you did in your PHP Dockerfile
 # this was missing for some reason. Didn't require last time.
 

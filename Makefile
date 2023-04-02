@@ -12,9 +12,17 @@ ifeq ($(UNAME),Darwin)
 	brew install docker-compose
 endif
 	sudo chmod +x /usr/local/bin/docker-compose
-	
+
 runserver:
+	docker-compose create
 	docker-compose build
 	docker start crm_app
 	docker exec -it crm_app bash -c 'composer install; php artisan key:generate'
 	docker-compose up
+
+stop:
+	docker stop crm_app crm_nginx crm_db
+
+clean:
+	sudo rm -rf tmp
+	docker rm crm_app crm_node crm_nginx crm_db

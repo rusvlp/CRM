@@ -1,6 +1,8 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <form method="post" action="">
+        <form method="post" action="{{ route('admin_create_user') }}">
+            {{ csrf_field() }}
+
             <div class="mb-1000 mt-10">
                 <div class="h-7"></div>
                 <label for="lName" class="block mb-2 text-lg font-medium text-gray-900 ">Фамилия</label>
@@ -37,6 +39,7 @@
                 hover:text-violet-600 px-4 py-2 rounded" >
                     Создать
                 </button>
+
             </div>
 
 
