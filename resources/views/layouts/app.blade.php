@@ -16,8 +16,11 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
+            @if (request()->route()->getPrefix() == "/admin")
+                @include('admin.layouts.navigation')
+            @else
+                @include('layouts.navigation')
+            @endif
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">

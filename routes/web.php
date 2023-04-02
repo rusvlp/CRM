@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function (Request $request) {
+
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -30,6 +34,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/leads', [LeadController::class, 'leads'])->name('leads');
     Route::get('/leads/create', [LeadController::class, 'createPage'])->name('createLeads');
+
+    Route::prefix("admin") -> group(
+        function(){
+            Route::get('/', [AdminController::class, 'adminPanel'])->name('admin_panel');
+            Route::get('/users', [AdminController::class, 'usersPage'])->name('admin_users');
+            Route::get('/users/add', [UserController::class, 'addUser'])->name('admin_add_user');
+        }
+    );
+
 });
 
 require __DIR__.'/auth.php';

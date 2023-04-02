@@ -1,7 +1,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-        <a href="/leads/create" class="bg-violet-600 hover:bg-violet-100 text-white hover:border-violet-600 border
+        <a href="/leads/create" style="background-color: #2563eb" class="bg-blue-400 hover:bg-violet-100 text-white hover:border-violet-600 border
                 hover:text-violet-600 px-4 py-2 rounded">
             Добавить
         </a>
