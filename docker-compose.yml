@@ -28,11 +28,19 @@ services:
    restart: always
    volumes:
        - ./tmp/db:/var/lib/mysql
+       - ./_docker/my.cnf:/etc/mysql/my.conf
    environment:
        MYSQL_DATABASE: laravel
        MYSQL_ROOT_PASSWORD: root
    ports:
        - "3308:3306"
-   command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+   #command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
    container_name: crm_db
 
+  node:
+      build:
+          context: .
+          dockerfile: _docker/nodejs/Dockerfile
+      volumes:
+          - ./:/var/www

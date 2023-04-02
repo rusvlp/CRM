@@ -29,11 +29,16 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 # this was missing for some reason. Didn't require last time.
 
 # Removing /var/lib/apt/lists worked
-RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_19.x | bash -
-RUN apt-get install nodejs -y
-RUN apt install --only-upgrade nodejs -y
-RUN npm install
-WORKDIR /var/www
+#RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_19.x | bash -
+#RUN apt-get install nodejs -y
+#RUN apt install --only-upgrade nodejs -y
+
+#WORKDIR /var/www
+#RUN chmod 777 -R ./
+#RUN npm update
+#RUN rm package-lock.json && npm install
+
+
 
 #COPY . /var/www/html/
 
