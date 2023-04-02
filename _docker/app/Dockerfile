@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+WORKDIR /var/www/
+COPY ./Makefile /var/www/
 COPY ./_docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
 
 # Install composer
@@ -25,6 +27,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     --filename=composer \
     --install-dir=/usr/local/bin
 
+RUN chmod 777 -R ./
 # Whatever you did in your PHP Dockerfile
 # this was missing for some reason. Didn't require last time.
 
@@ -33,13 +36,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 #RUN apt-get install nodejs -y
 #RUN apt install --only-upgrade nodejs -y
 
-#WORKDIR /var/www
+
 #RUN chmod 777 -R ./
 #RUN npm update
 #RUN rm package-lock.json && npm install
 
 
-
+#WORKDIR /var/www/
 #COPY . /var/www/html/
 
 

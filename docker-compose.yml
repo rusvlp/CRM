@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     volumes:
       - ./:/var/www
-      - ./_docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./_docker/nginx/conf.d/nginx.conf/:/etc/nginx/conf.d/default.conf
     ports:
       - "8083:80"
     depends_on:
@@ -44,3 +44,5 @@ services:
           dockerfile: _docker/nodejs/Dockerfile
       volumes:
           - ./:/var/www
+      depends_on:
+        - app
