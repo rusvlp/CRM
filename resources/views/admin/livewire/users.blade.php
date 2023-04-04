@@ -6,12 +6,25 @@
             Создать пользователя
         </a>
 
-        <div class = "h-5"></div>
+
 
         @foreach($users as $user)
-            <div class="bg-white overflow-hidden mt-10 shadow-sm sm:rounded-lg my-3 grid md:grid-cols-4 grid-cols-1">
-                <div class="p-6 text-gray-900">
+
+            <div class="bg-white overflow-hidden mt-10 shadow-sm sm:rounded-lg my-3 flex flex-wrap ">
+                <div class="p-6 text-gray-900 w-full sm:w-1/5">
+                    {{$user->name}}
+                </div>
+                <div class="p-6 text-gray-900 w-full sm:w-1/5">
+                    {{$user->email}}
+                </div>
+                <div class="p-6 text-gray-900 w-full sm:w-1/5">
                     {{$user->first_name}}
+                </div>
+                <div class="p-6 text-gray-900 w-full sm:w-1/5">
+                    {{$user->last_name}}
+                </div>
+                <div class="p-6 text-gray-900 w-full sm:w-1/5">
+                    {{$user->middle_name}}
                 </div>
             </div>
         @endforeach

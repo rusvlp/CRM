@@ -41,7 +41,7 @@ USER www
 # this was missing for some reason. Didn't require last time.
 
 # Removing /var/lib/apt/lists worked
-#RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_19.x | bash -
+#RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_19.x | bash -0
 #RUN apt-get install nodejs -y
 #RUN apt install --only-upgrade nodejs -y
 

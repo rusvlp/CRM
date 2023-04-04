@@ -35,14 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/leads', [LeadController::class, 'leads'])->name('leads');
     Route::get('/leads/create', [LeadController::class, 'createPage'])->name('createLeads');
 
-    Route::prefix("admin") -> group(
-        function(){
-            Route::get('/', [AdminController::class, 'adminPanel'])->name('admin_panel');
-            Route::get('/users', [AdminController::class, 'usersPage'])->name('admin_users');
-            Route::get('/users/add', [UserController::class, 'addUser'])->name('admin_add_user');
-            Route::post('/users/create', [UserController::class, 'createUser'])->name("admin_create_user");
-        }
-    );
+    Route::group(['prefix' => 'admin', 'middleware'=>'role:0'], function(){
+
+        Route::get('/', [AdminController::class, 'adminPanel'])->name('admin_panel');
+        Route::get('/users', [AdminController::class, 'usersPage'])->name('admin_users');
+        Route::get('/users/add', [UserController::class, 'addUser'])->name('admin_add_user');
+        Route::post('/users/create', [UserController::class, 'createUser'])->name("admin_create_user");
+
+    });
 
 });
 

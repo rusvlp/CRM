@@ -6,3 +6,4 @@ RUN chmod 777 -R ./
 COPY package*.json ./
 RUN npm update
 RUN npm install
+CMD ['npm', 'run', 'dev']
